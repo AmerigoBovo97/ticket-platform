@@ -31,10 +31,7 @@ public class Ticket {
     @Lob
     private String text;
 
-
-    public Ticket() {
-    }
-
+    
     public Ticket(Integer id, LocalDate creationDate, String title, String text) {
         this.id = id;
         this.creationDate = creationDate;
