@@ -1,12 +1,16 @@
 package org.milestone4.ticket.platform.ticket_platform.model;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
@@ -31,12 +35,20 @@ public class Ticket {
     @Lob
     private String text;
 
-    
-    public Ticket(Integer id, LocalDate creationDate, String title, String text) {
-        this.id = id;
-        this.creationDate = creationDate;
-        this.title = title;
-        this.text = text;
+    @ManyToMany
+    @JoinTable(
+        name = "category_ticket",
+        joinColumns = @JoinColumn(name = "ticket_id"),
+        inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private Set<TicketCategory> categories;
+
+    public Set<TicketCategory> getCategories() {
+        return this.categories;
+    }
+
+    public void setCategories(Set<TicketCategory> categories) {
+        this.categories = categories;
     }
 
     public Integer getId() {

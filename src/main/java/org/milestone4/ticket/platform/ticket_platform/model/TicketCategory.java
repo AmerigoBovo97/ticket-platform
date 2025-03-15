@@ -1,17 +1,18 @@
 package org.milestone4.ticket.platform.ticket_platform.model;
 
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
+@Entity
+@Table(name = "categories")
 public class TicketCategory {
-    
-    @Entity
-    @Table(name = "tickets")
-    public class TicketState {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +21,17 @@ public class TicketCategory {
     @NotBlank(message = "Name can not be blank")
     private String name;
 
+    @ManyToMany(mappedBy = "categories")
+    private Set<Ticket> tickets;
+
+
+    public Set<Ticket> getTickets() {
+        return this.tickets;
+    }
+
+    public void setTickets(Set<Ticket> tickets) {
+        this.tickets = tickets;
+    }
 
     public Integer getId() {
         return this.id;
@@ -44,6 +56,4 @@ public class TicketCategory {
             ", name='" + getName() + "'" +
             "}";
     }
-}
-
 }
