@@ -6,7 +6,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
@@ -24,7 +26,11 @@ public class Note {
 
     @NotBlank(message = "Creation date time can not be blank")
     private LocalDateTime creationDateTime;
-    
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private Integer author;
+
 
     public Integer getId() {
         return this.id;

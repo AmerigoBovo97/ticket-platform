@@ -34,6 +34,17 @@ public class User {
     @OneToMany(mappedBy = "operator")
     private Set<Ticket> tickets;
 
+    @OneToMany(mappedBy = "author")
+    private Set<Note> notes;
+    
+
+    public Set<Note> getNotes() {
+        return this.notes;
+    }
+
+    public void setNotes(Set<Note> notes) {
+        this.notes = notes;
+    }
 
     public Set<Ticket> getTickets() {
         return this.tickets;
