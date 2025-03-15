@@ -12,6 +12,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
@@ -52,6 +53,17 @@ public class Ticket {
     @JoinColumn(name = "user_id", nullable = false)
     private Integer operator;
 
+    @OneToMany(mappedBy = "ticket")
+    private Set<Note> notes;
+
+    
+    public Set<Note> getNotes() {
+        return this.notes;
+    }
+
+    public void setNotes(Set<Note> notes) {
+        this.notes = notes;
+    }
 
     public Integer getOperator() {
         return this.operator;

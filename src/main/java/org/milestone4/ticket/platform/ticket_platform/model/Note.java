@@ -31,6 +31,26 @@ public class Note {
     @JoinColumn(name = "user_id", nullable = false)
     private Integer author;
 
+    @ManyToOne
+    @JoinColumn(name = "ticket_id", nullable = false)
+    private Integer ticket;
+
+
+    public Integer getAuthor() {
+        return this.author;
+    }
+
+    public void setAuthor(Integer author) {
+        this.author = author;
+    }
+
+    public Integer getTicket() {
+        return this.ticket;
+    }
+
+    public void setTicket(Integer ticket) {
+        this.ticket = ticket;
+    }
 
     public Integer getId() {
         return this.id;
