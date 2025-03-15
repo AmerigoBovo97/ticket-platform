@@ -11,6 +11,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
@@ -42,6 +43,19 @@ public class Ticket {
         inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     private Set<TicketCategory> categories;
+    
+    @ManyToOne
+    @JoinColumn(name = "state_id", nullable = false)
+    private Integer state;
+
+
+    public Integer getState() {
+        return this.state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
 
     public Set<TicketCategory> getCategories() {
         return this.categories;
