@@ -17,7 +17,7 @@ public class TicketCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank(message = "Email can not be blank")
+    @NotBlank(message = "Name can not be blank")
     private String name;
 
 
@@ -41,7 +41,7 @@ public class TicketCategory {
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
-            ", email='" + getName() + "'" +
+            ", name='" + getName() + "'" +
             "}";
     }
 }

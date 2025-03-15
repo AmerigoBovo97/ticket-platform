@@ -17,7 +17,7 @@ public class UserRole {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank(message = "Email can not be blank")
+    @NotBlank(message = "Name can not be blank")
     private String name;
 
 
