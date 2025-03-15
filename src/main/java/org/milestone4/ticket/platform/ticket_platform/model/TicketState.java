@@ -19,13 +19,13 @@ public class TicketState {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank(message = "Email can not be blank")
+    @NotBlank(message = "Name can not be blank")
     private String name;
 
     @OneToMany(mappedBy = "role")
     private Set<Ticket> users;
 
-    
+
     public Set<Ticket> getUsers() {
         return this.users;
     }
