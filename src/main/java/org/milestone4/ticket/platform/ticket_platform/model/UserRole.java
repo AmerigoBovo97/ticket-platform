@@ -1,17 +1,18 @@
 package org.milestone4.ticket.platform.ticket_platform.model;
 
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
+@Entity
+@Table(name = "roles")
 public class UserRole {
-    
-    @Entity
-    @Table(name = "roles")
-    public class TicketState {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +20,9 @@ public class UserRole {
 
     @NotBlank(message = "Name can not be blank")
     private String name;
+
+    @OneToMany(mappedBy = "role")
+    private Set<User> users;
 
 
     public Integer getId() {
@@ -33,8 +37,16 @@ public class UserRole {
         return this.name;
     }
 
-    public void setName(String email) {
-        this.name = email;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<User> getUsers() {
+        return this.users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
     @Override
@@ -42,8 +54,7 @@ public class UserRole {
         return "{" +
             " id='" + getId() + "'" +
             ", name='" + getName() + "'" +
+            ", users='" + getUsers() + "'" +
             "}";
     }
-}
-
 }
