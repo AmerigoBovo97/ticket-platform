@@ -48,6 +48,19 @@ public class Ticket {
     @JoinColumn(name = "state_id", nullable = false)
     private Integer state;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private Integer operator;
+
+
+    public Integer getOperator() {
+        return this.operator;
+    }
+
+    public void setOperator(Integer operator) {
+        this.operator = operator;
+    }
+
 
     public Integer getState() {
         return this.state;

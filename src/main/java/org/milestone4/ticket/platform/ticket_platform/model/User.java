@@ -1,12 +1,15 @@
 package org.milestone4.ticket.platform.ticket_platform.model;
 
 
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
@@ -28,6 +31,17 @@ public class User {
     @JoinColumn(name = "role_id", nullable = false)
     private Integer role;
 
+    @OneToMany(mappedBy = "operator")
+    private Set<Ticket> tickets;
+
+
+    public Set<Ticket> getTickets() {
+        return this.tickets;
+    }
+
+    public void setTickets(Set<Ticket> tickets) {
+        this.tickets = tickets;
+    }
 
     public Integer getRole() {
         return this.role;
@@ -36,7 +50,6 @@ public class User {
     public void setRole(Integer role) {
         this.role = role;
     }
-
 
     public Integer getId() {
         return this.id;
@@ -61,7 +74,6 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
 
     @Override
     public String toString() {
