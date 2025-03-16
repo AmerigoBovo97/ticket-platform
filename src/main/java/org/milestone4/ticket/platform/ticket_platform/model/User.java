@@ -22,8 +22,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank(message = "Email can not be blank")
-    private String email;
+    @NotBlank(message = "Username can not be blank")
+    private String username;
 
     @NotBlank(message = "Password can not be blank")
     private String password;
@@ -75,12 +75,12 @@ public class User {
         this.id = id;
     }
 
-    public String getEmail() {
-        return this.email;
+    public String getUsername() {
+        return this.username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
