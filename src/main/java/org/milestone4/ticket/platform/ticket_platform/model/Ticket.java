@@ -47,11 +47,11 @@ public class Ticket {
     
     @ManyToOne
     @JoinColumn(name = "state_id", nullable = false)
-    private Integer state;
+    private TicketState state;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private Integer operator;
+    private User operator;
 
     @OneToMany(mappedBy = "ticket")
     private Set<Note> notes;
@@ -65,20 +65,20 @@ public class Ticket {
         this.notes = notes;
     }
 
-    public Integer getOperator() {
+    public User getOperator() {
         return this.operator;
     }
 
-    public void setOperator(Integer operator) {
+    public void setOperator(User operator) {
         this.operator = operator;
     }
 
 
-    public Integer getState() {
+    public TicketState getState() {
         return this.state;
     }
 
-    public void setState(Integer state) {
+    public void setState(TicketState state) {
         this.state = state;
     }
 

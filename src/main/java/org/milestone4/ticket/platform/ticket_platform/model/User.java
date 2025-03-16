@@ -29,7 +29,7 @@ public class User {
 
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
-    private Integer role;
+    private UserRole role;
 
     @OneToMany(mappedBy = "operator")
     private Set<Ticket> tickets;
@@ -54,11 +54,11 @@ public class User {
         this.tickets = tickets;
     }
 
-    public Integer getRole() {
+    public UserRole getRole() {
         return this.role;
     }
 
-    public void setRole(Integer role) {
+    public void setRole(UserRole role) {
         this.role = role;
     }
 

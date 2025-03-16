@@ -22,16 +22,16 @@ public class TicketState {
     @NotBlank(message = "Name can not be blank")
     private String name;
 
-    @OneToMany(mappedBy = "role")
-    private Set<Ticket> users;
+    @OneToMany(mappedBy = "state")
+    private Set<Ticket> tickets;
 
 
-    public Set<Ticket> getUsers() {
-        return this.users;
+    public Set<Ticket> getTicket() {
+        return this.tickets;
     }
 
-    public void setUsers(Set<Ticket> users) {
-        this.users = users;
+    public void setTicket(Set<Ticket> ticket) {
+        this.tickets = ticket;
     }
 
     public Integer getId() {

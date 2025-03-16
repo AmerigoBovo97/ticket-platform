@@ -29,26 +29,26 @@ public class Note {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private Integer author;
+    private User author;
 
     @ManyToOne
     @JoinColumn(name = "ticket_id", nullable = false)
-    private Integer ticket;
+    private Ticket ticket;
 
 
-    public Integer getAuthor() {
+    public User getAuthor() {
         return this.author;
     }
 
-    public void setAuthor(Integer author) {
+    public void setAuthor(User author) {
         this.author = author;
     }
 
-    public Integer getTicket() {
+    public Ticket getTicket() {
         return this.ticket;
     }
 
-    public void setTicket(Integer ticket) {
+    public void setTicket(Ticket ticket) {
         this.ticket = ticket;
     }
 
