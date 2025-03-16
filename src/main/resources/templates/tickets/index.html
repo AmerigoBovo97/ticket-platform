@@ -6,27 +6,8 @@
     <div class="container">
         <h1>Tutti i Ticket</h1>
         
-        <table class="table table-dark">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Category</th>
-                    <th>State</th>
-                    <th>Creation Date</th>
-                    <th>Assigned Operator</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="ticket : ${tickets}" th:object="${ticket}">
-                    <td>[[*{title}]]</td>
-                    <td>[[*{category.name}]]</td>
-                    <td>[[*{state.name}]]</td>
-                    <td>[[*{creationDate}]]</td>
-                    <td>[[*{operator.username}]]</td>
-                </tr>
-            </tbody>
-        </table>
-        
+        <div th:insert="~{fragments/ticket-table :: table}"></div>
+
     </div>
 
 </body>
