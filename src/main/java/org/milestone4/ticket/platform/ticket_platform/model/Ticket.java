@@ -8,9 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -37,13 +35,9 @@ public class Ticket {
     @Lob
     private String text;
 
-    @ManyToMany
-    @JoinTable(
-        name = "category_ticket",
-        joinColumns = @JoinColumn(name = "ticket_id"),
-        inverseJoinColumns = @JoinColumn(name = "category_id")
-    )
-    private Set<TicketCategory> categories;
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private TicketCategory category;
     
     @ManyToOne
     @JoinColumn(name = "state_id", nullable = false)
@@ -82,12 +76,12 @@ public class Ticket {
         this.state = state;
     }
 
-    public Set<TicketCategory> getCategories() {
-        return this.categories;
+    public TicketCategory getCategory() {
+        return this.category;
     }
 
-    public void setCategories(Set<TicketCategory> categories) {
-        this.categories = categories;
+    public void setCategories(TicketCategory category) {
+        this.category = category;
     }
 
     public Integer getId() {
