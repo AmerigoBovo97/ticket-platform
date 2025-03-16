@@ -12,7 +12,9 @@ public class SecurityConfiguration {
     @Bean
     @SuppressWarnings("removal")
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-        http.authorizeHttpRequests();
+        http.authorizeHttpRequests()
+        .requestMatchers("/**").permitAll()
+        .anyRequest().authenticated();
         return http.build();
     }
 }
