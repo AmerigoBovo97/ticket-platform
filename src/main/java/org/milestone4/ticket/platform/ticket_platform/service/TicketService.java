@@ -5,7 +5,9 @@ import java.util.List;
 import org.milestone4.ticket.platform.ticket_platform.model.Ticket;
 import org.milestone4.ticket.platform.ticket_platform.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TicketService {
     
     @Autowired
