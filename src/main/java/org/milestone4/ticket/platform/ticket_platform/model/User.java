@@ -8,13 +8,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "tickets")
+@Table(name = "user")
 public class User {
     
     @Id
@@ -27,9 +28,13 @@ public class User {
     @NotBlank(message = "Password can not be blank")
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id", nullable = false)
-    private UserRole role;
+    @ManyToMany
+    @JoinTable(
+        name = "role_user",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<UserRole> roles;
 
     @OneToMany(mappedBy = "operator")
     private Set<Ticket> tickets;
@@ -54,12 +59,12 @@ public class User {
         this.tickets = tickets;
     }
 
-    public UserRole getRole() {
-        return this.role;
+    public Set<UserRole> getRole() {
+        return this.roles;
     }
 
-    public void setRole(UserRole role) {
-        this.role = role;
+    public void setRole(Set<UserRole> roles) {
+        this.roles = roles;
     }
 
     public Integer getId() {
