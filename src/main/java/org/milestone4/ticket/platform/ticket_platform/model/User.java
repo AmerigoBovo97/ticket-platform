@@ -59,11 +59,11 @@ public class User {
         this.tickets = tickets;
     }
 
-    public Set<UserRole> getRole() {
+    public Set<UserRole> getRoles() {
         return this.roles;
     }
 
-    public void setRole(Set<UserRole> roles) {
+    public void setRoles(Set<UserRole> roles) {
         this.roles = roles;
     }
 
@@ -95,7 +95,7 @@ public class User {
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
-            ", email='" + getEmail() + "'" +
+            ", email='" + getUsername() + "'" +
             ", password='" + getPassword() + "'" +
             "}";
     }
