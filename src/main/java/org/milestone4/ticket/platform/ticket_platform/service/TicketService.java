@@ -16,4 +16,8 @@ public class TicketService {
     public List<Ticket> findAll(){
         return repo.findAll();
     }
+
+    public void save(Ticket ticket){
+        repo.save(ticket);
+    }
 }
