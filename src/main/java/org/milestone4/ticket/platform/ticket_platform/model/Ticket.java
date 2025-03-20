@@ -14,6 +14,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -24,7 +25,7 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank(message = "Creation date can not be blank")
+    @NotNull(message = "Creation date can not be null")
     @FutureOrPresent
     private LocalDate creationDate;
 
