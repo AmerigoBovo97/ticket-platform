@@ -17,4 +17,8 @@ public class TicketStateService {
     public List<TicketState> findAll(){
         return repo.findAll();
     }
+
+    public TicketState findByName(String name){
+        return repo.findByName(name).get();
+    }
 }
