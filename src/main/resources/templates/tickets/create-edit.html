@@ -3,7 +3,14 @@
     <head th:replace="~{fragments/head :: head(title = 'ticket form')}"></head>
 <body class="bg-dark text-white">
 
-    <div th:replace="~{fragments/ticket-form :: form('create')}"></div>
+    <div class="container">
+        <h2>Create Ticket</h2>
+
+        <form th:action="@{/ticket/create}" method="post">
+            <div th:replace="~{fragments/ticket-form :: form('create')}"></div>
+            <button type="submit" class="btn btn-primary">Create Ticket</button>
+        </form>
+    </div>
 
 </body>
 </html>

@@ -21,6 +21,10 @@ public class TicketService {
         return repo.findAll();
     }
 
+    public Ticket findById(Integer id){
+        return repo.findById(id).get();
+    }
+
     public void save(Ticket ticket){
         repo.save(ticket);
     }

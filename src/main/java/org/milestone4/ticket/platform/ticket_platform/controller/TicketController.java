@@ -1,6 +1,5 @@
 package org.milestone4.ticket.platform.ticket_platform.controller;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.milestone4.ticket.platform.ticket_platform.model.Ticket;
@@ -19,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
@@ -51,6 +51,7 @@ public class TicketController {
         model.addAttribute("ticket", ticketService.newTicket());
         model.addAttribute("categories", categoryService.findAll());
         model.addAttribute("users", userService.findAll());
+        model.addAttribute("toDoState", stateService.findByName("to do"));
         return "tickets/create-edit";
     }
     
@@ -68,6 +69,18 @@ public class TicketController {
         ticketService.save(formTicket);
         
         return "redirect:/ticket";
+    }
+
+    @GetMapping("/{id}")
+    public String showPizza(@PathVariable Integer id, Model model) {
+        Ticket ticket = ticketService.findById(id);
+        model.addAttribute("ticket", ticket);
+        model.addAttribute("user", ticket.getOperator());
+        model.addAttribute("state", ticket.getState().getName());
+        model.addAttribute("category", ticket.getCategory().getName());
+        System.out.println(ticket.getState().getName());
+
+        return "tickets/show";
     }
     
 }
