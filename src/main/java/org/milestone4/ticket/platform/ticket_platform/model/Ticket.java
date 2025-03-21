@@ -81,7 +81,7 @@ public class Ticket {
         return this.category;
     }
 
-    public void setCategories(TicketCategory category) {
+    public void setCategory(TicketCategory category) {
         this.category = category;
     }
 
