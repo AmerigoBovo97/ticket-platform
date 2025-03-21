@@ -17,6 +17,7 @@
                     <th>State</th>
                     <th>Creation Date</th>
                     <th>Assigned Operator</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -26,6 +27,9 @@
                     <td>[[*{state.name}]]</td>
                     <td>[[*{creationDate}]]</td>
                     <td>[[*{operator.username}]]</td>
+                    <td>
+                        <th:block th:replace="~{fragments/delete-modal :: delete-btn(${ticket})}"></th:block>
+                    </td>
                 </tr>
             </tbody>
         </table>
