@@ -63,7 +63,7 @@
             <div class="form-group mb-2" sec:authorize="hasAuthority('ADMIN')">
                 <label for="operator">Operator</label>
                 <div class="form-control bg-dark text-white" th:if="${crud} == 'show'">[[*{operator.username}]]</div>
-                <select class="form-control bg-dark text-white" id="operator" th:field="*{operator}" th:if="${crud} == 'edit'">
+                <select class="form-control bg-dark text-white" id="operator" th:field="*{operator}" th:if="${crud} == 'create' or ${crud} == 'edit'">
                     <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.username}"></option>
                 </select>
                 <div th:if="${#fields.hasErrors('operator')}" class="text-danger">
