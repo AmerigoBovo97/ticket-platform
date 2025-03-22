@@ -12,9 +12,9 @@ import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -26,7 +26,7 @@ public class Ticket {
     private Integer id;
 
     @NotNull(message = "Creation date can not be null")
-    @FutureOrPresent
+    @PastOrPresent(message = "Creation date can not be in the future")
     private LocalDate creationDate;
 
     @NotBlank(message = "Title can not be blank")
