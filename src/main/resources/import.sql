@@ -1,7 +1,7 @@
 INSERT INTO roles (name) VALUES ("ADMIN");
 INSERT INTO roles (name) VALUES ("OPERATOR");
 
-INSERT INTO users (username, password) VALUES ('amerigo', '{noop}123'), ('riccardo', '{noop}123'), ('davide', '{noop}123'), ('lucrezia', '{noop}123'), ('paolo', '{noop}123'), ('danilo', '{noop}123');
+INSERT INTO users (username, password, state) VALUES ('amerigo', '{noop}123', true), ('riccardo', '{noop}123', false), ('davide', '{noop}123', true), ('lucrezia', '{noop}123', false), ('paolo', '{noop}123', true), ('danilo', '{noop}123', true);
 
 INSERT INTO role_user (role_id, user_id) VALUES (1, 1), (2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (2, 6);
 
