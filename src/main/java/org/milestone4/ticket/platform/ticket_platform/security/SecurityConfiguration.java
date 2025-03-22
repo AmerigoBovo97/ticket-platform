@@ -16,8 +16,8 @@ public class SecurityConfiguration {
     @SuppressWarnings("removal")
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.authorizeHttpRequests()
-        .requestMatchers("/ticket/create", "/ticket/*/edit").hasAnyAuthority("ADMIN")
-        .requestMatchers("/ticket").hasAnyAuthority("ADMIN", "OPERATOR")
+        .requestMatchers("/ticket/create", "/ticket/*/edit").hasAuthority("ADMIN")
+        .requestMatchers("/ticket", "/ticket/*").hasAnyAuthority("ADMIN", "OPERATOR")
         .requestMatchers("/*").permitAll()
         .requestMatchers("/webjars/**").permitAll()
         .and().formLogin()
