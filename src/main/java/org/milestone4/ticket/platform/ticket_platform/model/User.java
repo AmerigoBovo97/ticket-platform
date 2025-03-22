@@ -1,6 +1,7 @@
 package org.milestone4.ticket.platform.ticket_platform.model;
 
 
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
@@ -38,10 +39,14 @@ public class User {
     private Set<UserRole> roles;
 
     @OneToMany(mappedBy = "operator")
-    private Set<Ticket> tickets;
+    private List<Ticket> tickets;
 
     @OneToMany(mappedBy = "author")
     private Set<Note> notes;
+
+    public Boolean isAdimin(){
+        return this.roles.stream().anyMatch(role -> role.getName().equals("ADMIN"));
+    }
     
 
     public Set<Note> getNotes() {
@@ -52,11 +57,11 @@ public class User {
         this.notes = notes;
     }
 
-    public Set<Ticket> getTickets() {
+    public List<Ticket> getTickets() {
         return this.tickets;
     }
 
-    public void setTickets(Set<Ticket> tickets) {
+    public void setTickets(List<Ticket> tickets) {
         this.tickets = tickets;
     }
 
