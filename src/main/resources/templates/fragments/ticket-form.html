@@ -51,24 +51,29 @@
             <div class="form-group mb-2" th:classappend="${crud} == 'create' ? 'd-none'">
                 <label for="state">State</label>
                 <input type="hidden" id="state" th:field="*{state}" th:readonly="${crud} == 'create'">
-                <div class="form-control bg-dark text-white">[[${state}]]</div>
+                <div class="form-control bg-dark text-white" th:if="${crud} == 'show'">[[${state}]]</div>
+                <select class="form-control bg-dark text-white" id="state" th:field="*{state}" th:if="${crud} == 'edit'">
+                    <option th:each="state : ${states}" th:value="${state.id}" th:text="${state.name}"></option>
+                </select>
                 <div th:if="${#fields.hasErrors('state')}" class="text-danger">
                     <span th:errors="*{state}"></span>
                 </div>
             </div>
     
-            <div class="form-group mb-2"  th:classappend="${crud} == 'show' ? 'd-none'">
+            <div class="form-group mb-2" sec:authorize="hasAuthority('ADMIN')">
                 <label for="operator">Operator</label>
-                <select class="form-control bg-dark text-white" id="operator" th:field="*{operator}" th:if="${crud} == 'create'">
+                <div class="form-control bg-dark text-white" th:if="${crud} == 'show'">[[*{operator.username}]]</div>
+                <select class="form-control bg-dark text-white" id="operator" th:field="*{operator}" th:if="${crud} == 'edit'">
                     <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.username}"></option>
                 </select>
-                <input class="form-control bg-dark text-white" id="operator" th:field="${user}" th:value="${user.username}" th:if="${crud} == 'show'"></input>
                 <div th:if="${#fields.hasErrors('operator')}" class="text-danger">
                     <span th:errors="*{operator}"></span>
                 </div>
             </div>
 
             <input type="hidden" th:field="*{id}">
+
+            <a type="button" class="btn btn-primary" th:href="@{|/ticket/*{id}/edit|}" th:if="${crud} == 'show'" sec:authorize="hasAuthority('ADMIN')">Edit</a>
     
         </div>
 
