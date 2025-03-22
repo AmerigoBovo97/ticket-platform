@@ -22,12 +22,13 @@
             </thead>
             <tbody>
                 <tr th:each="ticket : ${tickets}" th:object="${ticket}">
-                    <td>[[*{title}]]</td>
+                    <td><a class="text-decoration-none text-white fw-bold" th:href="@{|/ticket/*{id}|}">[[*{title}]]</a></td>
                     <td>[[*{category.name}]]</td>
                     <td>[[*{state.name}]]</td>
                     <td>[[*{creationDate}]]</td>
                     <td>[[*{operator.username}]]</td>
                     <td>
+                        <a type="button" class="btn btn-primary" th:href="@{|/ticket/*{id}/edit|}">Edit</a>
                         <th:block th:replace="~{fragments/delete-modal :: delete-btn(${ticket})}"></th:block>
                     </td>
                 </tr>
