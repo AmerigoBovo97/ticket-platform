@@ -65,7 +65,7 @@ public class TicketController {
     public String create(Model model) {
         model.addAttribute("ticket", ticketService.newTicket());
         model.addAttribute("categories", categoryService.findAll());
-        model.addAttribute("users", userService.findAll());
+        model.addAttribute("users", userService.findByState(true));
         model.addAttribute("toDoState", stateService.findByName("to do"));
 
         return "tickets/create";
@@ -78,7 +78,7 @@ public class TicketController {
         if (bindingResult.hasErrors()) {
             model.addAttribute("ticket", formTicket);
             model.addAttribute("categories", categoryService.findAll());
-            model.addAttribute("users", userService.findAll());
+            model.addAttribute("users", userService.findByState(true));
             model.addAttribute("toDoState", stateService.findByName("to do"));
 
             return "tickets/create";
@@ -119,7 +119,7 @@ public class TicketController {
 
         model.addAttribute("ticket", ticket);
         model.addAttribute("categories", categoryService.findAll());
-        model.addAttribute("users", userService.findAll());
+        model.addAttribute("users", userService.findByState(true));
         model.addAttribute("states", stateService.findAll());
 
         return "tickets/edit";
@@ -131,7 +131,7 @@ public class TicketController {
         if (bindingResult.hasErrors()) {
             model.addAttribute("ticket", formTicket);
             model.addAttribute("categories", categoryService.findAll());
-            model.addAttribute("users", userService.findAll());
+            model.addAttribute("users", userService.findByState(true));
             model.addAttribute("states", stateService.findAll());
 
             return "tickets/edit";
