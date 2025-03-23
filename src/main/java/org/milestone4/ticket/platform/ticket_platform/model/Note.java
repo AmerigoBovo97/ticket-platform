@@ -11,6 +11,7 @@ import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "notes")
@@ -24,7 +25,7 @@ public class Note {
     @Lob
     private String text;
 
-    @NotBlank(message = "Creation date time can not be blank")
+    @NotNull(message = "Creation date time can not be null")
     private LocalDateTime creationDateTime;
 
     @ManyToOne

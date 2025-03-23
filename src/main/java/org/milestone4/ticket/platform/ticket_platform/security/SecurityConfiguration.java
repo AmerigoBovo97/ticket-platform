@@ -2,6 +2,7 @@ package org.milestone4.ticket.platform.ticket_platform.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
@@ -16,8 +17,11 @@ public class SecurityConfiguration {
     @SuppressWarnings("removal")
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.authorizeHttpRequests()
-        .requestMatchers("/ticket/create", "/ticket/*/edit").hasAuthority("ADMIN")
+        .requestMatchers("/ticket/create").hasAuthority("ADMIN")
+        .requestMatchers("/ticket/*/edit").hasAnyAuthority("ADMIN", "OPERATOR")
         .requestMatchers("/ticket", "/ticket/*").hasAnyAuthority("ADMIN", "OPERATOR")
+        .requestMatchers(HttpMethod.POST, "/ticket/note/create").hasAnyAuthority("ADMIN", "OPERATOR")
+        .requestMatchers(HttpMethod.POST, "/ticket/user/*/state").hasAnyAuthority("ADMIN", "OPERATOR")
         .requestMatchers("/*").permitAll()
         .requestMatchers("/webjars/**").permitAll()
         .and().formLogin()

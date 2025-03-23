@@ -50,7 +50,7 @@ public class User {
     @Column
     private boolean state = true;
 
-    public boolean isAdimin(){
+    public boolean isAdmin(){
         return this.roles.stream().anyMatch(role -> role.getName().equals("ADMIN"));
     }
     

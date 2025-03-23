@@ -13,7 +13,7 @@
 
             <div class="form-group mb-2">
                 <label for="title">Title</label>
-                <input type="text" class="form-control bg-dark text-white" id="title" th:field="*{title}" placeholder="Enter title" th:errorClass="is-invalid" th:readonly="${crud} == 'show'">
+                <input type="text" class="form-control bg-dark text-white" id="title" th:field="*{title}" placeholder="Enter title" th:errorClass="is-invalid" th:readonly="${crud} == 'show' or ${!user.isAdmin()}">
                 <div th:if="${#fields.hasErrors('title')}" class="invalid-feedback">  	
                     <ul>
                         <li th:each="err : ${#fields.errors('title')}" th:text="${err}"></li>
@@ -23,7 +23,7 @@
     
             <div class="form-group mb-2">
                 <label for="text">Text</label>
-                <textarea class="form-control bg-dark text-white" id="text" th:field="*{text}" rows="4" placeholder="Enter ticket description"></textarea>
+                <textarea class="form-control bg-dark text-white" id="text" th:field="*{text}" rows="4" placeholder="Enter ticket description" th:readonly="${crud} == 'show' or ${!user.isAdmin()}"></textarea>
                 <div th:if="${#fields.hasErrors('text')}" class="text-danger">
                     <span th:errors="*{text}"></span>
                 </div>
@@ -31,7 +31,7 @@
     
             <div class="form-group mb-2" th:classappend="${crud} == 'create' ? 'd-none'">
                 <label for="creationDate">Creation Date</label>
-                <input type="date" class="form-control bg-dark text-white" id="creationDate" th:field="*{creationDate}">
+                <input type="date" class="form-control bg-dark text-white" id="creationDate" th:field="*{creationDate}" th:readonly="${crud} == 'show' or ${!user.isAdmin()}">
                 <div th:if="${#fields.hasErrors('creationDate')}" class="text-danger">
                     <span th:errors="*{creationDate}"></span>
                 </div>
@@ -39,10 +39,10 @@
     
             <div class="form-group mb-2">
                 <label for="category">Category</label>
-                <select class="form-control bg-dark text-white" id="category" th:field="*{category}" th:if="${crud} == 'create' or ${crud} == 'edit'">
+                <select class="form-control bg-dark text-white" id="category" th:field="*{category}" th:if="${crud == 'create' or (crud == 'edit' and user.isAdmin())}">
                     <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
                 </select>
-                <div class="form-control bg-dark text-white" th:if="${crud} == 'show'">[[${category}]]</div>
+                <div class="form-control bg-dark text-white" th:if="${crud} == 'show' or ${!user.isAdmin()}">[[*{category.name}]]</div>
                 <div th:if="${#fields.hasErrors('category')}" class="text-danger">
                     <span th:errors="*{category}"></span>
                 </div>
@@ -73,7 +73,7 @@
 
             <input type="hidden" th:field="*{id}">
 
-            <a type="button" class="btn btn-primary" th:href="@{|/ticket/*{id}/edit|}" th:if="${crud} == 'show'" sec:authorize="hasAuthority('ADMIN')">Edit</a>
+            <a type="button" class="btn btn-primary" th:href="@{|/ticket/*{id}/edit|}" th:if="${crud} == 'show'">Edit</a>
     
         </div>
 
