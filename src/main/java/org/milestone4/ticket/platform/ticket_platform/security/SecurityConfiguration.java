@@ -22,6 +22,7 @@ public class SecurityConfiguration {
         .requestMatchers("/ticket", "/ticket/*").hasAnyAuthority("ADMIN", "OPERATOR")
         .requestMatchers(HttpMethod.POST, "/ticket/note/create").hasAnyAuthority("ADMIN", "OPERATOR")
         .requestMatchers(HttpMethod.POST, "/ticket/user/*/state").hasAnyAuthority("ADMIN", "OPERATOR")
+        .requestMatchers("/ticket/serach/*").hasAuthority("ADMIN")
         .requestMatchers("/*").permitAll()
         .requestMatchers("/webjars/**").permitAll()
         .and().formLogin()
