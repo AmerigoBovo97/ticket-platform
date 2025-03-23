@@ -39,4 +39,16 @@ public class TicketService {
     public void delete(Ticket ticket){
         repo.delete(ticket);
     }
+
+    public List<Ticket> findByCategory(String category){
+        return repo.findByCategoryName(category);
+    }
+
+    public List<Ticket> findByState(String state){
+        return repo.findByStateName(state);
+    }
+
+    public List<Ticket> findByTitle(String title){
+        return repo.findByTitleContainingIgnoreCase(title);
+    }
 }
