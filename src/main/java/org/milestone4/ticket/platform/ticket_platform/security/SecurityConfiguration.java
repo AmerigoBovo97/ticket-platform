@@ -17,10 +17,10 @@ public class SecurityConfiguration {
     @SuppressWarnings("removal")
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.authorizeHttpRequests()
-        .requestMatchers("/ticket/create").hasAuthority("ADMIN")
+        .requestMatchers("/ticket/create", "/ticket/*/delete").hasAuthority("ADMIN")
         .requestMatchers("/ticket/*/edit").hasAnyAuthority("ADMIN", "OPERATOR")
         .requestMatchers("/ticket", "/ticket/*").hasAnyAuthority("ADMIN", "OPERATOR")
-        .requestMatchers(HttpMethod.POST, "/ticket/note/create").hasAnyAuthority("ADMIN", "OPERATOR")
+        .requestMatchers(HttpMethod.POST, "/note/create").hasAnyAuthority("ADMIN", "OPERATOR")
         .requestMatchers(HttpMethod.POST, "/ticket/user/*/state").hasAnyAuthority("ADMIN", "OPERATOR")
         .requestMatchers("/ticket/serach/*").hasAuthority("ADMIN")
         .requestMatchers("/*").permitAll()

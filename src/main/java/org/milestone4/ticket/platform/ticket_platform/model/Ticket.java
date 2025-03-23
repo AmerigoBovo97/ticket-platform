@@ -34,6 +34,7 @@ public class Ticket {
     private String title;
 
     @Lob
+    @NotBlank(message = "Text can not be blank")
     private String text;
 
     @ManyToOne
@@ -48,7 +49,7 @@ public class Ticket {
     @JoinColumn(name = "user_id", nullable = false)
     private User operator;
 
-    @OneToMany(mappedBy = "ticket")
+    @OneToMany(mappedBy = "ticket", orphanRemoval = true)
     private Set<Note> notes;
 
     

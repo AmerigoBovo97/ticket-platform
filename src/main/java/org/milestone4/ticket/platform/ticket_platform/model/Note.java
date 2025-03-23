@@ -1,6 +1,7 @@
 package org.milestone4.ticket.platform.ticket_platform.model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,6 +37,10 @@ public class Note {
     @JoinColumn(name = "ticket_id", nullable = false)
     private Ticket ticket;
 
+    public String getFormattedDate() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        return creationDateTime.format(formatter);
+    }
 
     public User getAuthor() {
         return this.author;

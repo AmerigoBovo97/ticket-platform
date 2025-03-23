@@ -47,10 +47,10 @@
                     <span th:errors="*{category}"></span>
                 </div>
             </div>
+            <input type="hidden" th:field="*{category}" th:if="${!user.isAdmin()}">
     
             <div class="form-group mb-2" th:classappend="${crud} == 'create' ? 'd-none'">
                 <label for="state">State</label>
-                <input type="hidden" id="state" th:field="*{state}" th:readonly="${crud} == 'create'">
                 <div class="form-control bg-dark text-white" th:if="${crud} == 'show'">[[${state}]]</div>
                 <select class="form-control bg-dark text-white" id="state" th:field="*{state}" th:if="${crud} == 'edit'">
                     <option th:each="state : ${states}" th:value="${state.id}" th:text="${state.name}"></option>
@@ -70,6 +70,7 @@
                     <span th:errors="*{operator}"></span>
                 </div>
             </div>
+            <input type="hidden" th:field="*{operator}" th:if="${!user.isAdmin()}">
 
             <input type="hidden" th:field="*{id}">
 
